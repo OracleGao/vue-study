@@ -1,0 +1,184 @@
+<html lang="en">
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no, email=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="./css/materialize.css" type="text/css">
+		<link rel="stylesheet" href="./css/trade.css" type="text/css">
+		<link rel="stylesheet" href="./css/home.css" type="text/css">
+		<link rel="stylesheet" href="./css/font-awesome-4.4.0.css" type="text/css">
+	</head>
+    <body style="">
+    <div id="app">
+    	<main>
+        	<div class="container oprate">
+                <div class="row ortime" style="height: 230px;">
+                    <div class="row" style="height: auto;">
+                        <div class="arrtime">到期时间</div>
+                    </div>
+                    <div class="outpane">
+                        <div class="row ">
+                            <div class="items" style="height: 86px; width: 400px;">
+                                <div class="bg pertime" :class="{active:timeup.active}" v-for="(timeup, index) in timeups" v-on:click="chooseTimeup(timeup.minute)" >
+                                    <div class="pt">结算时间</div>
+                                    <div class="fd tt">{{timeup.minute}}<span>分钟</span></div>
+                                    <div class="shou">收益<span>{{timeup.profit}}</span>%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row tou" style="overflow: initial; padding: 0; height: 60px">
+                        <div class="arrtou">投资金额 <span>单笔投资金额不少于<label>100</label></span></div>
+                        <div class="row">
+                            <input id="order_amount" type="text" class="oh" placeholder="其他金额" v-model="inputMoney" v-on:focus="chooseMoney(inputMoney)" v-on:blur="checkInputMoney()"/>
+                            <div class="outpane">
+                                <div class="con">
+                                    <div class="items" style="width: 806px;">
+                                        <a :class="{active:money.active}" href="javascript:" v-for="money in moneys" v-on:click="chooseMoney(money.value)">¥ {{money.value}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row action centered">
+                        <div class="col s3 z" v-on:click="popupSubmit(true)">
+                            <button class="bg bn up" type="button" style="padding-left:10px" data-buy-up="true">看涨</button>
+                        </div>
+                        <div class="col s6 c">
+                            <button class="bg bn chi" style="padding-left:26px" type="button">摇一摇</button>
+                        </div>
+                        <div class="col s3 d" v-on:click="popupSubmit(false)">
+                            <button class="bg bn down" type="button" style="padding-left:10px" data-buy-up="false">看跌</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    	</main>
+        <div class="lean-overlay my-lean-overlay" style="z-index: 1002; display: block; opacity: 0.5;" v-show="show"></div> 
+            <div v-show="show" class="modal bottom-sheet" tabindex="-1" style="z-index: 1003; display: block; opacity: 1; bottom: 0px;">
+                <div class="modal-content relative" style="pading-top:12px;">
+                    <div class="close-popup">
+                        <a class="btn-block modal-action waves-effect">
+                            <i class="fa fa-times-circle" v-on:click="popupClose()"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col s6">到期时间：<span class="light-gray">{{actionData.durationText}}分钟</span></div>
+                            <div class="col s6">投资金额：<span class="light-gray">{{actionData.amount}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6">交易品种：<span class="light-gray">{{actionData.instanceName}}</span></div>
+                            <div class="col s6">收益比率：<span class="light-gray">{{actionData.profit}}%</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6">
+                                <span class="my-red-text" v-show="actionData.buyUp">看涨 <i class="iconfont">&#xe60c;</i></span>
+                                <span class="my-green-text" v-show="!actionData.buyUp">看跌 <i class="iconfont">&#xe607;</i></span>
+                            </div>
+                            <div class="col s6">最新价格：<span class="orange-red current_price">{{actionData.currentPrice}}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="row">
+                        <div class="col s3">&nbsp;</div>
+                        <div class="col s6">
+                            <button type="button" class="btn btn-primary btn-block waves-effect confirm-buy-btn"><i class="fa fa-spin fa-spinner hide"></i>确认下单</button>
+                        </div>
+                        <div class="col s3">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
+<script type="text/javascript" src="./js/vue.js"></script>
+<script type="text/javascript">
+new Vue({
+        el: '#app',
+        data: {
+            timeups: [
+                {minute: 1, profit: 78, active: true},
+                {minute: 3, profit: 80, active: false},
+                {minute: 5, profit: 84, active: false},
+                {minute: 10, profit: 90, active: false}
+            ],
+            moneys: [
+                {value: 100, active: true},
+                {value: 200, active: false},
+                {value: 300, active: false},
+                {value: 500, active: false},
+                {value: 1000, active: false},
+                {value: 3000, active: false},
+                {value: 5000, active: false}
+            ],
+            inputMoney: '',
+            show: false,
+            actionData: {
+                durationText: 1, 
+                amount: 100,
+                instanceName: 'LNG天燃气',
+                profit: 78,
+                buyUp: true,
+                currentPrice: 58.2                
+            }
+        },
+        methods: {
+            chooseTimeup(e) {
+                for (var i in this.timeups) {
+                    if (this.timeups[i].minute == e) {
+                        this.timeups[i].active = true
+                    } else {
+                        this.timeups[i].active = false
+                    }
+                }
+            },
+            chooseMoney(e) {
+                for (var i in this.moneys) {
+                    if (this.moneys[i].value == e) {
+                        this.moneys[i].active = true
+                        this.inputMoney = ''
+                    } else {
+                        this.moneys[i].active = false
+                    }
+                }
+            },
+            popupSubmit(e) {
+                this.show = true
+                if (e) {
+                    this.actionData.buyUp = true
+                } else {
+                    this.actionData.buyUp = false
+                }
+                for (var i in this.timeups) {
+                    if (this.timeups[i].active) {
+                        this.actionData.durationText = this.timeups[i].minute
+                        this.actionData.profit = this.timeups[i].profit
+                        break
+                    }
+                }
+                this.actionData.amount = this.inputMoney
+                for (var i in this.moneys) {
+                    if (this.moneys[i].active) {
+                        this.actionData.amount = this.moneys[i].value
+                        break
+                    }
+                }
+            },
+            popupClose() {
+                this.show = false
+            },
+            checkInputMoney() {
+                var reg = /^[0-9]+$/ ;
+                if (!reg.test(this.inputMoney) || this.inputMoney < 100) {
+                    this.inputMoney = 100
+                    this.chooseMoney(100)
+                } else {
+                    this.chooseMoney(this.inputMoney)
+                }
+            }
+        }
+    })
+</script>
