@@ -1,0 +1,119 @@
+<html lang="en">
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="format-detection" content="telephone=no, email=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="./css/materialize.css" type="text/css">
+		<link rel="stylesheet" href="./css/trade.css" type="text/css">
+		<link rel="stylesheet" href="./css/home.css" type="text/css">
+		<link rel="stylesheet" href="./css/font-awesome-4.4.0.css" type="text/css">
+        <link rel="stylesheet" href="./css/recharge-withdraw.css" type="text/css">
+    </head>
+	</head>
+    <body style="">
+    <div id="app">
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="nav-wrapper">
+                        <div class="row">
+                            <div class="col s2">
+                                <a href="javascrpit:#" data-activates="side-menu" class="button-collapse pull-left"><i class="fa fa-bars"></i></a>
+                            </div>
+                            <div class="col s10">
+                                <div class="page-title">充值</div>
+                            </div>
+                        </div>
+                   </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section class="block-bg">
+                <div class="recharge-sum">
+                    <div class="recharge-sum-l">金额</div>
+                    <div class="recharge-sum-r">
+                        <input :value="inputMoney" v-model="inputMoney" v-on:focus="modifyMoney()" v-on:blur="checkInputMoney()" class="recharge-input" placeholder="输入充值金额" type="text">
+                    </div>
+                </div>
+            </section>
+            <section class="block-bg">
+                <div class="row recharge-sum-box">
+                    <div class="col s4" v-for="money in moneys">
+                        <div class="recharge-sum-blocks " :class="{current:money.value==inputMoney}" v-on:click="chooseMoney(money.value)">
+                            <p>{{money.show}}元</p>
+                            <p>到账金额</p>
+                            <p>{{money.show}}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="block-bg">
+                <div class="payment-type-line" v-for="payment in payments" v-on:click="choosePayment(payment.type)">
+                    <div class="row payment-type" :class="{checked:payment.type==paymentType}">
+                        <div class="col s8">
+                            <i class="pay-icons" :class="{'pay-icons03':payment.type==1, 'pay-icons02':payment.type==2, 'pay-icons01':payment.type==3, 'pay-icons04':payment.type==4}"></i>
+                            <span class="payment-type-name">{{payment.label}}</span>
+                        </div>
+                        <div class="col s4 right-align">
+                            <span class="check-radio"></span>
+                        </div>
+                    </div>
+                </div>
+                <article>
+                    <div class="row withdraw-note"></div>
+                </article>
+                <div class="row next-step-row">
+                    <div class="col s2">&nbsp;</div>
+                    <div class="col s8">
+                        <button type="button" id="btn_next" class="btn btn-block">下一步</button>
+                    </div>
+                    <div class="col s2">&nbsp;</div>
+                </div>
+            </section>
+        </main>
+    </div>
+	</body>
+</html>
+<script type="text/javascript" src="./js/vue.js"></script>
+<script type="text/javascript">
+new Vue({
+        el: '#app',
+        data: {
+            moneys:[
+                {value: 10000, show: '10,000.00'},
+                {value: 5000, show: '5,000.00'},
+                {value: 3000, show: '3,000.00'},
+                {value: 1000, show: '1,000.00'},
+                {value: 500, show: '500.00'},
+                {value: 100, show: '100.00'}
+            ],
+            inputMoney: 1000,
+            payments:[
+                {type: 1, label: '网银支付', postUrl: '', },
+                {type: 2, label: '支付宝收款', postUrl: ''},
+                {type: 3, label: '微信收款', postUrl: ''},
+                {type: 4, label: '二维码直付', postUrl: ''}
+            ],
+            paymentType: 2
+        },
+        methods: {
+            chooseMoney(value) {
+                this.inputMoney = value
+            },
+            modifyMoney() {
+                this.inputMoney = ''
+            },
+            checkInputMoney() {
+                var reg = /^\d+(?=\.{0,1}\d+$|$)/ ;
+                if (!reg.test(this.inputMoney)) {
+                    this.inputMoney = 1000
+                }
+            },
+            choosePayment(type) {
+                this.paymentType = type
+            }
+        }
+    })
+</script>

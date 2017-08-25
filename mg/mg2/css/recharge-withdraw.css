@@ -1,0 +1,325 @@
+.recharge-title {
+	border-bottom: 1px solid #383a51;
+	color: #019483;
+	padding: 4%;
+	font-size: 1.5rem
+}
+
+.recharge-sum {
+	color: #808082;
+	padding: 4%;
+	font-size: 1.3rem;
+	display: inline-block;
+	width: 100%;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-top: 1px solid #383a51
+}
+
+.block-bg {
+	background-color: #13121c;
+	margin-bottom: .5rem
+}
+
+.recharge-sum-blocks {
+	border: 2px solid #019483;
+	border-radius: .5rem;
+	margin: 3% 0;
+	text-align: center;
+	cursor: pointer
+}
+
+.recharge-sum-box {
+	padding: 1% 2%;
+	margin-bottom: 0
+}
+
+.recharge-sum-box>.s4 {
+	margin: 0;
+	padding: 0 1%
+}
+
+.recharge-sum-blocks>p {
+	margin: .2rem;
+	text-shadow: 0 1px 1px rgba(67,66,66,0.7)
+}
+
+.recharge-sum-blocks>p:first-child {
+	color: #019483;
+	margin-top: .2rem
+}
+
+.recharge-sum-blocks>p:last-child {
+	margin-bottom: .4rem
+}
+
+.recharge-sum-box .current {
+	background-color: #019483
+}
+
+.recharge-sum-box .current>p:first-child {
+	color: #fff
+}
+
+.recharge-input {
+	border: none !important;
+	text-align: center;
+	margin-bottom: 0 !important;
+	text-align: left;
+	font-size: 1.3rem !important
+}
+
+.recharge-sum-l {
+	float: left;
+	width: 20%;
+	line-height: 3rem
+}
+
+.recharge-sum-r {
+	float: left;
+	width: 80%
+}
+
+.payment-type-line {
+	padding: 0 2%
+}
+
+.payment-type {
+	margin-bottom: 0;
+	border-bottom: 1px solid #383a51;
+	padding: 1% 0;
+	cursor: pointer
+}
+
+.payment-type-name {
+	display: inline-block
+}
+
+.payment-type-name {
+	position: relative;
+	top: -5px;
+	margin-left: .5rem
+}
+
+.pay-icons {
+	position: relative;
+	top: 3px;
+	width: 34px;
+	height: 27px;
+	display: inline-block;
+	background-image: url("../images/pay-type-icons.png");
+	background-repeat: no-repeat
+}
+
+.pay-icons01 {
+	background-position: 0 1px
+}
+
+.pay-icons02 {
+	background-position: 0 -39px
+}
+
+.pay-icons03 {
+	background-position: 0 -76px
+}
+
+.pay-icons04 {
+	background-position: 0 -113px
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (-moz-min-device-pixel-ratio:1.5),only screen and (-o-min-device-pixel-ratio:3/2),only screen and (min-device-pixel-ratio:1.5) {
+	.pay-icons {
+		background-image: url("../images/pay-type-icons.png");
+		background-size: 34px 140px
+	}
+}
+
+.check-radio {
+	border: 2px solid #706e73;
+	border-radius: 2rem;
+	width: 1.7rem;
+	top: .3rem;
+	height: 1.7rem;
+	position: relative;
+	display: inline-block
+}
+
+.payment-type-line .checked .check-radio {
+	background-color: #04a406;
+	border-color: #04a406;
+	position: relative
+}
+
+.payment-type-line .checked .check-radio:before,.payment-type-line .checked .check-radio:after {
+	content: '';
+	position: absolute;
+	background-color: #fff
+}
+
+.payment-type-line .checked .check-radio:before {
+	width: 1rem;
+	height: .12rem;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	right: 1px;
+	top: .7rem
+}
+
+.payment-type-line .checked .check-radio:after {
+	width: .5rem;
+	height: .12rem;
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	left: 1px;
+	top: .8rem
+}
+
+.withdraw-input {
+	border: none !important;
+	text-align: center;
+	margin-bottom: 10px !important
+}
+
+.withdraw-input:focus {
+	border: none !important
+}
+
+*::-webkit-input-placeholder {
+	color: #999
+}
+
+*:-moz-placeholder {
+	color: #999
+}
+
+*:-ms-input-placeholder {
+	color: #999
+}
+
+.balance-text {
+	font-size: 1rem
+}
+
+.withdraw-sum-text {
+	color: #fcc400
+}
+
+.withdraw-note {
+	color: #76787a;
+	line-height: 200%;
+	padding: 20px 3% 20px 3%;
+	font-size: .8rem
+}
+
+.trade-button-box {
+	margin: 0
+}
+
+.trade-button-box .fixed-action-btn {
+	left: 0 !important
+}
+
+.trade-button>a {
+	background-color: #151721;
+	border-radius: 2px !important;
+	box-shadow: none !important;
+	margin: .2rem 0 !important
+}
+
+.card-icon,.withdraw-icon {
+	width: 22px;
+	background-image: url("/Static/images/payment-icons.png");
+	position: relative;
+	height: 19px;
+	top: .3rem;
+	display: inline-block;
+	margin-right: .6rem
+}
+
+.card-icon {
+	background-position: 0 0
+}
+
+.withdraw-icon {
+	background-position: 0 -36px
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (-moz-min-device-pixel-ratio:1.5),only screen and (-o-min-device-pixel-ratio:3/2),only screen and (min-device-pixel-ratio:1.5) {
+	.card-icon,.withdraw-icon {
+		background-image: url("/Static/images/payment-icons@2x.png");
+		background-size: 22px 130px
+	}
+}
+
+.trade-button>a:hover,.trade-button>a:focus {
+	background-color: #2bbbad !important;
+	border-color: #2bbbad !important
+}
+
+.trade-button>a:hover i.card-icon,.trade-button>a:focus i.card-icon {
+	background-position: 0 -74px
+}
+
+.trade-button>a:hover i.withdraw-icon,.trade-button>a:focus i.withdraw-icon {
+	background-position: 0 -110px
+}
+
+.payment-manage-box {
+	background-color: #151721;
+	border-radius: .4rem;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	margin-top: 20%;
+	padding-top: 21%;
+	padding-bottom: 3%;
+	font-size: 1.3rem;
+	position: relative
+}
+
+.coins img {
+	max-width: 90px
+}
+
+.current-coins-text {
+	margin-bottom: 3%
+}
+
+.payment-manage-header-area {
+	position: absolute;
+	top: -20%;
+	left: 0;
+	width: 100%;
+	text-align: center
+}
+
+.payment-manage-header img {
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	border: 2px solid #fff;
+	border-radius: 40px
+}
+
+.next-step-row {
+	margin-bottom: 0
+}
+
+.next-step-row .btn-block {
+	margin-top: .3rem;
+	margin-bottom: .3rem
+}
+
+.right-text-withdraw {
+	width: 80%
+}
+
+.full {
+	float: left;
+	width: 100%
+}
